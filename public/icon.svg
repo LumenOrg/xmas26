@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#17384a"/>
+  <circle cx="256" cy="242" r="192" fill="#fff8e8"/>
+  <path d="M256 82 220 138h17l-47 78h24l-61 104h206l-61-104h24l-47-78h17Z" fill="#20745f" stroke="#155944" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M256 82 220 138h17l-47 78h24l-61 104h103Z" fill="#2c896d"/>
+  <rect x="241" y="319" width="30" height="39" fill="#835947"/>
+  <path d="m256 63 8 16 18 3-13 12 3 18-16-8-16 8 3-18-13-12 18-3Z" fill="#f5ce65"/>
+  <circle cx="222" cy="205" r="13" fill="#dc5653"/>
+  <circle cx="288" cy="214" r="13" fill="#edbf54"/>
+  <circle cx="254" cy="273" r="13" fill="#6c9fc4"/>
+  <path d="M157 357c57-17 141-17 198 0" fill="none" stroke="#dfeee4" stroke-width="23" stroke-linecap="round"/>
+  <text x="256" y="426" fill="#fff8e8" font-family="Arial,sans-serif" font-size="53" font-weight="700" letter-spacing="6" text-anchor="middle">LUMEN</text>
+</svg>
