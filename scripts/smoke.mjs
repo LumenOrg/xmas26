@@ -42,6 +42,12 @@ async function touchDrag(context, page, from, to) {
   }
 }
 
+async function assertFitsViewport(page, width, height) {
+  await page.setViewportSize({ width, height });
+  const scrollHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+  assert(scrollHeight <= height + 1, `${width}x${height} layout should fit without vertical scrolling (got ${scrollHeight}px)`);
+}
+
 async function checkBrowser(browserType) {
   const browser = await browserType.launch({ headless: true });
   const context = await browser.newContext({ viewport: { width: 1180, height: 820 }, deviceScaleFactor: 2, hasTouch: browserType.name() === 'chromium' });
@@ -53,9 +59,15 @@ async function checkBrowser(browserType) {
     await page.goto(url, { waitUntil: 'networkidle' });
     assert.equal(await page.locator('h1').textContent(), 'Az én karácsonyi képeslapom');
     await page.screenshot({ path: `/private/tmp/lumen-${browserType.name()}-ipad.png`, fullPage: true });
+    for (const [width, height] of [[1024, 768], [1366, 768], [820, 1180], [1180, 820]]) {
+      await assertFitsViewport(page, width, height);
+    }
 
     await page.getByRole('button', { name: /Piros gömb hozzáadása/ }).click();
     assert.equal(await page.locator('.placed-piece').count(), 1, 'Tap adds an ornament');
+    for (const [width, height] of [[1024, 768], [1366, 768], [820, 1180], [1180, 820]]) {
+      await assertFitsViewport(page, width, height);
+    }
 
     await drag(
       page,
@@ -107,7 +119,7 @@ async function checkBrowser(browserType) {
     await page.getByRole('button', { name: 'Visszavonás' }).click();
     await page.waitForFunction((style) => document.querySelector('button[aria-label^="Piros gömb a képeslapon"]')?.getAttribute('style') === style, originalPosition);
 
-    await page.getByLabel('Írd ide a neved').fill('Ágnes');
+    await page.getByRole('textbox', { name: 'Ki készítette?' }).fill('Ágnes');
     await page.getByRole('button', { name: 'Kész a képeslap!' }).click();
     const preview = page.getByAltText('Az elkészült karácsonyi képeslap előnézete');
     await preview.waitFor({ timeout: 20000 });
@@ -138,7 +150,7 @@ async function checkBrowser(browserType) {
     page.once('dialog', (dialog) => dialog.accept());
     await page.getByRole('button', { name: 'Új képeslap' }).click();
     await page.waitForFunction(() => document.querySelectorAll('.placed-piece').length === 0);
-    assert.equal(await page.getByLabel('Írd ide a neved').inputValue(), '', 'New card clears the name');
+    assert.equal(await page.getByRole('textbox', { name: 'Ki készítette?' }).inputValue(), '', 'New card clears the name');
     assert.deepEqual(errors, [], 'No browser runtime errors');
     console.log(`${browserType.name()}: editor, PNG, and responsive layout passed${browserType.name() === 'chromium' ? ' (including offline reload)' : ''}`);
   } finally {

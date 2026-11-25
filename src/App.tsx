@@ -100,7 +100,6 @@ function App() {
   const currentExport = exported?.signature === signature ? exported : null;
   const selected = state.pieces.find((piece) => piece.id === state.selectedId);
   const {
-    offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
   } = useRegisterSW();
@@ -262,8 +261,7 @@ function App() {
             </section>
 
             <section className="finish-section" aria-labelledby="finish-title">
-              <h2 id="finish-title">Ki készítette?</h2>
-              <label htmlFor="child-name">Írd ide a neved</label>
+              <h2 id="finish-title"><label htmlFor="child-name">Ki készítette?</label></h2>
               <input
                 ref={nameRef}
                 id="child-name"
@@ -272,12 +270,10 @@ function App() {
                 onChange={(event) => setName(event.target.value)}
                 maxLength={28}
                 autoComplete="off"
-                placeholder="A neved"
               />
               <button type="button" className="save-button" onClick={makeImage} disabled={isSaving}>
                 {isSaving ? 'Kép készül…' : 'Kész a képeslap!'}
               </button>
-              <p className="save-hint">A kész képet egy felnőtt tudja menteni vagy megosztani.</p>
               {message && <p className="save-feedback" role="status" aria-live="polite">{message}</p>}
             </section>
 
@@ -293,13 +289,11 @@ function App() {
 
             <div className="adult-actions">
               <button type="button" className="new-card-button" onClick={startNewCard}>Új képeslap</button>
-              <p>Új gyerek előtt ezzel ürítheted a képeslapot.</p>
             </div>
           </aside>
         </main>
 
         <footer className="app-footer">
-          {offlineReady && <p>Offline használatra kész. <button type="button" onClick={() => setOfflineReady(false)}>Rendben</button></p>}
           {needRefresh && (
             <p>
               Új verzió érhető el. {hasDraft ? 'Előbb fejezzétek be ezt a képeslapot.' : <button type="button" onClick={() => updateServiceWorker(true)}>Frissítés</button>}

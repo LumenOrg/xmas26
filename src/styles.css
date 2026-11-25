@@ -260,7 +260,7 @@ h1 { margin: 0; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.12; }
 .drag-preview svg { display: block; width: 100%; height: 100%; }
 
 .finish-section { margin-top: 20px; padding-top: 18px; border-top: 2px solid #e6e7d7; }
-.finish-section label { display: block; margin-bottom: 7px; font-size: 16px; font-weight: 700; }
+.finish-section label { cursor: text; }
 .finish-section input {
   width: 100%;
   min-height: 50px;
@@ -271,7 +271,6 @@ h1 { margin: 0; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.12; }
   background: #fff;
   font-size: 18px;
 }
-.finish-section input::placeholder { color: #6c8184; }
 .save-button, .export-button {
   display: block;
   width: 100%;
@@ -289,7 +288,6 @@ h1 { margin: 0; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.12; }
   text-decoration: none;
 }
 .save-button:not(:disabled):hover, .export-button:hover { background: #ffe391; }
-.save-hint { margin: 11px 0 0; color: #567079; font-size: 14px; line-height: 1.4; }
 .save-feedback { margin: 10px 0 0; color: #1e5c65; font-size: 14px; font-weight: 700; line-height: 1.4; }
 
 .export-section { margin-top: 22px; padding-top: 18px; border-top: 2px solid #e6e7d7; }
@@ -298,10 +296,22 @@ h1 { margin: 0; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.12; }
 .download-link { display: block; margin-top: 13px; color: #265d69; font-size: 15px; font-weight: 700; text-align: center; }
 .adult-actions { margin-top: 20px; padding-top: 17px; border-top: 2px solid #e6e7d7; }
 .new-card-button { width: 100%; min-height: 44px; border: 1px solid #a9bdba; border-radius: 11px; color: #244d55; background: #f8faf4; font-size: 15px; font-weight: 700; }
-.adult-actions p { margin: 6px 0 0; color: #5a7078; font-size: 13px; text-align: center; }
 .app-footer { color: #f4e9d1; font-size: 14px; }
 .app-footer p { margin: 13px 0 0; }
 .app-footer button { margin-left: 8px; border: 0; color: #f5d774; background: transparent; font-weight: 800; text-decoration: underline; }
+
+@media (min-width: 1021px) and (min-height: 700px) {
+  /* Size the whole workspace with the card so its heading stays aligned. */
+  .app-shell { max-width: min(1450px, calc((100dvh - 290px) * 1.5 + 418px)); }
+}
+
+@media (min-width: 1021px) and (max-height: 820px) {
+  .control-panel { padding-block: 14px; }
+  .palette-item { min-height: 78px; }
+  .palette-section + .palette-section { margin-top: 14px; }
+  .finish-section { margin-top: 16px; padding-top: 14px; }
+  .adult-actions { margin-top: 16px; padding-top: 14px; }
+}
 
 @media (max-width: 1020px) {
   .workspace { grid-template-columns: minmax(0, 1fr); }
@@ -311,6 +321,13 @@ h1 { margin: 0; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.12; }
   .finish-section, .export-section, .adult-actions { padding-top: 0; border-top: 0; }
   .finish-section { grid-column: 1; }
   .export-section, .adult-actions { grid-column: 2; }
+}
+
+@media (min-width: 701px) and (max-width: 1020px) {
+  .app-shell { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .workspace { gap: 14px; }
+  .control-panel { gap: 8px; }
+  .palette-item { min-height: 76px; padding-block: 4px; }
 }
 
 @media (max-width: 700px) {

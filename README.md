@@ -41,7 +41,7 @@ A build ugyanebből az útvonalból állítja elő a manifest `start_url` és `s
 
 ## Műhely előtti iPad ellenőrzés
 
-1. Nyisd meg a HTTPS-es címet Safariban, és várd meg az **„Offline használatra kész”** üzenetet.
+1. Nyisd meg a HTTPS-es címet Safariban, és várd meg, amíg az oldal betölt.
 2. A Safari Megosztás menüjében válaszd a **Hozzáadás a főképernyőhöz** lehetőséget. Ha látható, az **Open as Web App** kapcsoló maradjon bekapcsolva.
 3. Nyisd meg a főképernyőre tett appot. Kapcsold be a repülőgép üzemmódot, zárd be és nyisd meg újra, majd készíts próbaképeslapot.
 4. A **Kész a képeslap!** gomb elkészíti a képet. Egy felnőtt a **Kép megnyitása** gombbal külön lapon megnyithatja, a rendszer megosztási felületével mentheti vagy továbbíthatja, illetve a letöltési linket használhatja. A külön lap viselkedése iPadOS-verziónként eltérhet; az appban látható előnézet és a megosztási gomb tartalék út.
