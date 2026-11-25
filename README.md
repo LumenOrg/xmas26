@@ -31,10 +31,10 @@ A smoke teszt Chromiumban és WebKitben ellenőrzi a szerkesztést, a PNG-t és 
 
 ## Statikus telepítés
 
-A `dist/` mappa bármely HTTPS-en elérhető statikus tárhelyre feltölthető. Gyökérútvonalon a szokásos `pnpm build` elég. GitHub Pages projektútvonalhoz állítsd be a teljes alútvonalat, perjelekkel az elején és a végén:
+A `dist/` mappa a `https://lumenorg.github.io/xmas26/` címhez készül. A szokásos `pnpm build` a `/xmas26/` alapútvonalat használja, így a build fájljai GitHub Pages alatt a megfelelő helyről töltődnek be. Másik tárhelyhez felülírhatod az alapútvonalat, perjelekkel az elején és a végén:
 
 ```sh
-APP_BASE_PATH=/lumen-xmas-card/ pnpm build
+APP_BASE_PATH=/masik-utvonal/ pnpm build
 ```
 
 A build ugyanebből az útvonalból állítja elő a manifest `start_url` és `scope` mezőit, a gyorsítótár navigációs útvonalát és az asset-hivatkozásokat. A tárhely beállítása és a közzététel külön feladat.

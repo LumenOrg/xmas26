@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { chromium, webkit } from 'playwright';
 
-const url = process.env.SMOKE_URL ?? 'http://127.0.0.1:4173/';
+const url = process.env.SMOKE_URL ?? 'http://127.0.0.1:4173/xmas26/';
 
 async function drag(page, from, to, x, y) {
   const source = await from.boundingBox();
